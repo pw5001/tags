@@ -1,11 +1,11 @@
-# md-nlp
+# Tags
 ## Background
 
 I use Obsidian a lot, but don't link between notes as much as I could, and tags are useful although they can be bogged down with typos and involuntary use of alternate terms. Hence this package.
 
 It is written in Python and runs on MacOS and Ubuntu Linux. Not Windows because I don't use Windows for serious work. The only needed package outside the standard install is `pyyaml`.
 
-It reads files in the vault, butt does not change them.
+It reads files in the vault, but does not change them.
 
 ## Files
 ### In the package
@@ -33,7 +33,7 @@ Install the YAML package:
 pip3 install pyyaml
 ```
 
-Check `run.sh` and adjust the locations as needed (there are helpful comments included). The only oddity is a call to a bash function which overcomes the MacOS shell not honouring case in directory names. By that I mean '/user/paul` and `/user/Paul` will be treated as identical by the shell, but not by the Python script. I haven't included `wheresmyhome.sh` because it's written for my environment and won't be helpful for most other people.
+Check `run.sh` and adjust the locations as needed (there are helpful comments included). The only oddity is a call to a bash function which overcomes the MacOS shell not honouring case in directory names. By that I mean `/user/paul` and `/user/Paul` will be treated as identical by the shell, but not by the Python script. I haven't included `wheresmyhome.sh` because it's written for my environment and won't be helpful for most other people.
 
 In my environment everything lives in Dropbox. That includes code, static data and the Obsidian vault. This may be different for you.
 
@@ -49,17 +49,17 @@ This will create the index files in whatever temporary directory you specify. Ch
 
 Tags are pulled from the YAML block at the start of the note, but not if they are defined elsewhere. Each is reduced to lowercase and then matched against the key/value data loaded from `Convert-tags.json`. If the tag matches a key, it is replaced by the value. If not, the key is retained with it's original case.
 
-_Missing fucntionality_:
+_Missing functionality_:
 
 - I have considered a threshold for tags, below which files would not be generated. This would be controlled via a configuration item and a parameter to the bash script `run.sh`. Currently this isn't important enough to implement (but this is likely to change in the near future). However, sort the `tmp/TagsReport.txt` file and look at the occurrence counts to see how much it would help you;
 - Recognising tags defined outside the YAML block. I don't write notes like that, but with a little more effort it could be done. Performance would degrade somewhat as the note content would have to be parsed;
-- Tidy the diagnostic messages. Too many get generated even without the flag being set. Clumsy but not critical - it helps me identify poorly constructed notes (and there have been a few);
+- Tidy the diagnostic messages. Too many get generated even without the flag being set. Clumsy but not critical - it helps me identify poorly constructed notes (and there have been a few !);
 
 ## Performance
 
-Development and testing take place on either a MacBook Pro or an iMac, both vintage. Run times are acceptable on either machine :
+Development and testing take place on either a MacBook Pro or an iMac, both vintage. Run times are variable from 5 seconds to 2 minutes :
 
-5 seconds reading _2602_ notes giving _539_ unique tags on a 2012 Macbook Retina Pro
+2 minutes reading _2634_ notes giving _542_ unique tags on a 2012 Macbook Retina Pro
 
-Obviously, 539 unique tags will generate 539 index files.
+Obviously, 542 unique tags will generate 542 index files.
 
