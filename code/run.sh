@@ -55,7 +55,7 @@ fi
 #     Directory where the tag index files are created          $TagDir
 #
 
-GitProject=md-nlp
+GitProject=tags
 
 DropboxDir=${Home}Dropbox
 BaseDir=${DropboxDir}/Live/Git/$GitProject/
